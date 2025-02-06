@@ -6,16 +6,10 @@ function App() {
       <h1>Sentiment Analysis bot</h1>
       <div className="card">
         <form onSubmit={()=>{console.log()}}>
-          <input type="text" 
-            required
-            max="250" 
-            placeholder="Write something for me to analyse!"
-          ></input>
+          <input required max="250" type="text" placeholder="Write something for me to analyse!"></input>
+          <div className="spacer-10"/>
+          <button type="submit">Get sentiment</button>
         </form>
-        <div className="spacer-10"/>
-        <button type="submit">
-          Get sentiment
-        </button>
       </div>
     </>
   )
