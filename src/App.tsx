@@ -38,7 +38,7 @@ function App() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <div className="spacer-10" />
+        <div className="spacer-10"/>
         {loading
           ? <button disabled>Get sentiment!</button>
           : <button type="submit">Get sentiment!</button>
