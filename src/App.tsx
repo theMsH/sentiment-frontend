@@ -8,7 +8,7 @@ function App() {
         <form onSubmit={()=>{console.log()}}>
           <input required max="250" type="text" placeholder="Write something for me to analyse!"></input>
           <div className="spacer-10"/>
-          <button type="submit">Get sentiment</button>
+          <button type="submit">Get sentiment!</button>
         </form>
       </div>
     </>
