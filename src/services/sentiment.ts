@@ -20,11 +20,10 @@ export async function getRandomSentiment() {
             default:
                 response = { "sentiment": "negative" }
         }
-        await delay(2500) // Fake response delay
-
+        await delay(1500) // Fake response delay
         return response
     }
     catch {
-        new Error("500") // Fake status
+        throw new Error("500") // Fake status
     }
 }
