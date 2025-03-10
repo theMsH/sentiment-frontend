@@ -1,29 +1,32 @@
-import { delay } from "../tools/delay";
+const BASE_URL = "https://backend-cc-cc-sentiment-backend.2.rahtiapp.fi"
 
-
-export type SentimentResponse = {
-    sentiment: string
+const DEFAULT_ERROR_RESPONSE: SentimentResponse = {
+    input_data: "Something went wrong, please try again!",
+    sentiment: "error"
 }
 
-// Fake backend fetch
-export async function getRandomSentiment() {
-    try {
-        let response: SentimentResponse = { "sentiment": "negative" };
+export type SentimentResponse = {
+  input_data: string,
+  sentiment: string
+}
 
-        switch(Math.floor(Math.random() * 3)) {  // Random integer 0, 1, 2
-            case 0:
-                response = { "sentiment": "positive" }
-                break
-            case 1:
-                response = { "sentiment": "neutral" }
-                break
-            default:
-                response = { "sentiment": "negative" }
+export async function getSentiment(message: string) {
+    try {
+        let response = await fetch(BASE_URL + "/sentiment", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ input_data: message })
+        })
+
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
         }
-        await delay(1500) // Fake response delay
-        return response
+
+        const data = await response.json();
+        return data
     }
-    catch {
-        throw new Error("500") // Fake status
+    catch (e) {
+        console.error(e)
+        return DEFAULT_ERROR_RESPONSE;
     }
 }
